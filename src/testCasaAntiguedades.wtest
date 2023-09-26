@@ -1,0 +1,112 @@
+import casaAntiguedades.*
+import antiguedad.*
+
+test "Antiguedades en stock"{
+	casa.adquirir(auto)
+	casa.adquirir(cuadro)
+	casa.adquirir(munieca)
+	assert.equals([auto,cuadro,munieca], casa.enStock())
+}
+
+test "Se adquiere un lote de cosas"{
+	casa.adquirirLote([auto, cuadro, munieca])
+	assert.equals([auto,cuadro,munieca], casa.enStock())
+}
+
+test "Cuadro esta en stock"{
+	casa.adquirir(auto)
+	casa.adquirir(cuadro)
+	casa.adquirir(munieca)
+	assert.that(casa.tieneUna (auto))
+}
+
+test "Hay 3 en stock"{
+	casa.adquirir(auto)
+	casa.adquirir(cuadro)
+	casa.adquirir(munieca)
+	assert.equals(3, casa.cuantoHay())
+}
+
+test "Ultimo adquiriso es la munieca"{
+	casa.adquirir(auto)
+	casa.adquirir(cuadro)
+	casa.adquirir(munieca)
+	assert.equals(munieca, casa.ultima())
+}
+ 
+test "El cuadro tiene mas de 100 años"{
+	assert.that(casa.muyAntigua(cuadro))
+}
+
+test "La munieca tiene menos de 100 años"{
+	assert.notThat(casa.muyAntigua(munieca))
+}
+
+test "Años de la antiguedad en la 1er posicion"{
+	casa.adquirir(auto)
+	casa.adquirir(cuadro)
+	casa.adquirir(munieca)
+	assert.equals(50,casa.antiguedadEnPosicion(0))
+}
+
+test "Años de la ultima antiguedad"{
+	casa.adquirir(auto)
+	casa.adquirir(cuadro)
+	casa.adquirir(munieca)
+	assert.equals(64,casa.antiguedadEnPosicion(2))
+}
+
+test "Años de una antiguedad en una posicion"{
+	casa.adquirir(auto)
+	casa.adquirir(sillon)
+	casa.adquirir(munieca)
+	assert.equals(64,casa.antiguedadEnPosicion(2))
+}
+
+test "Se restaura primera antiguedad"{
+	casa.adquirir(auto)
+	casa.adquirir(sillon)
+	casa.adquirir(munieca)
+	casa.restaurarPrimera()
+	assert.equals(0,auto.antiguedad())
+}
+
+test "Se restaura ultima antiguedad"{
+	casa.adquirir(auto)
+	casa.adquirir(sillon)
+	casa.adquirir(munieca)
+	casa.restaurarUltima()
+	assert.equals(0,munieca.antiguedad())
+}
+
+test "Se restaura antiguedad en unas posicion"{
+	casa.adquirir(auto)
+	casa.adquirir(sillon)
+	casa.adquirir(munieca)
+	casa.restaurarEnPosicion(1)
+	assert.equals(0,sillon.antiguedad())
+}
+
+test "Se restaura porque esta en buen estado"{
+	casa.restaurarDada(munieca)
+	assert.equals(0,munieca.antiguedad())
+}
+
+test "No se restaura porque no esta en buen estado"{
+	casa.restaurarDada(sillon)
+	assert.equals(64,munieca.antiguedad())
+}
+
+test "Se vende todo"{
+	casa.adquirir(auto)
+	casa.adquirir(cuadro)
+	casa.adquirir(munieca)
+	casa.vender()
+	assert.equals(0, casa.cuantoHay())
+}
+
+
+
+
+
+

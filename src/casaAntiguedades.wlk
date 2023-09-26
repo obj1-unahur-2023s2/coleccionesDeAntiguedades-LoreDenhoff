@@ -9,12 +9,12 @@ object casa{
 	method tieneUna (cosa) = stock.contains(cosa)
 	method cuantoHay() = stock.size()
 	method ultima() = stock.last()
-	method muyAntigua(cosa) = cosa.calcularAntiguedad() >= 100
-	method antiguedadEnPosicion(pos) = stock.get(pos).calcularAntiguedad()
+	method muyAntigua(cosa) = cosa.antiguedad() > 100 
+	method antiguedadEnPosicion(pos) = stock.get(pos).antiguedad()
 	method restaurarPrimera() = stock.first().restaurar() 
 	method restaurarUltima() = stock.last().restaurar() 
 	method restaurarEnPosicion(pos) = stock.get(pos).restaurar()
-	method restaurarDada(cosa) = if (cosa.buenEstado()) cosa.restaurar() else !cosa.restaurar()
+	method restaurarDada(cosa) = if (cosa.buenEstado()) cosa.restaurar() else{}
 	method vender() = stock.clear() 
 }
 	

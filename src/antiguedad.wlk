@@ -1,14 +1,43 @@
 
-object cosaAntigua {
+object auto {
 	
-	var property buenEstado
-	var property anios = 0
-	var property fechaActual= 0
+	var property buenEstado = true
+	var fechaCeracion = new Date(day = 30, month = 6, year = 1973)
+	const hoy = new Date()
+	
+	method hoy() = hoy
+	method antiguedad() = ((hoy - fechaCeracion)/365).truncate(0) 
+	method restaurar() {fechaCeracion= hoy} 
 
-	method calcularAntiguedad() = fechaActual-anios
-	method restaurar() {anios=0} 
+}
+object cuadro{
+	var property buenEstado = false
+	var fechaCeracion = new Date(day = 20, month = 2, year = 1503) 
+	const hoy = new Date()
+
+	method antiguedad() = ((hoy - fechaCeracion)/365).truncate(0) 
+	method restaurar() {fechaCeracion= hoy} 
+ 
 }
 
-object auto{}
-object reloj{}
-object munieca{}
+object munieca{
+	var property buenEstado = true
+	var fechaCeracion = new Date(day = 19, month = 3, year = 1959)
+	const hoy = new Date()
+
+	method antiguedad() = ((hoy - fechaCeracion)/365).truncate(0) 
+	method restaurar() {fechaCeracion= hoy} 
+
+}
+
+object sillon {
+	var property buenEstado = false
+	var fechaCeracion = new Date(day = 6, month = 12, year = 1860)
+	const hoy = new Date()
+
+	method antiguedad() = ((hoy - fechaCeracion)/365).truncate(0) 
+	method restaurar() {fechaCeracion= hoy} 
+
+}
+
+
